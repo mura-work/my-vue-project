@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button @click="callApi">API呼び出し</button>
     <h2>CountList</h2>
     <table>
       <thead>
@@ -41,15 +40,12 @@ export default {
       default: 'aaa',
     }
   },
-  methods: {
-    callApi() {
+  created: function() {
       // alert("aaa")
       axios.get("http://localhost:3000/api/v1/contents")
         .then(response => {
           this.apiList = response.data
         })
-      console.log(this.apiList)
-    }
   }
 }
 </script>
