@@ -31,9 +31,9 @@ export default {
       }
       axios.post("http://localhost:3000/api/v1/contents", listForm)
         .then(response => {
+          this.listFrom = response.data
         })
         // this.getContents()
-        window.location.href('/')
     },
     getContents() {
       axios.get("http://localhost:3000/api/v1/contents")
