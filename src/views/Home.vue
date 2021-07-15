@@ -8,29 +8,40 @@
     <label for="comment">コメント</label>
     <textarea id="comment" v-model="comment"></textarea>
     <button @click="createComment">送信</button>
-    <div>一覧</div>
-    <div></div>
+    <h2>一覧</h2>
+    <div v-for="post in posts" :key="post.name">
+      <div>名前：{{post.fields.name.stringValue}}</div>
+      <div>コメント：{{post.fields.comment.stringValue}}</div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 
+const FIREBASE_DB_URL = "https://firestore.googleapis.com/v1/projects/" +
+        process.env.VUE_APP_FIREBASE_DB + "/databases/(default)/documents/comments"
+
 export default {
   data() {
     return {
       name: "",
       comment: "",
+      posts: [],
     }
+  },
+  created: function () {
+    axios.get(FIREBASE_DB_URL).then(response => {
+      this.posts = response.data.documents;
+    });
   },
   methods: {
     toUsers() {
       this.$router.push('users');
     },
     createComment() {
-      const API_KEY = process.env.VUE_APP_FIREBASE_DB
-      const url = "https://firestore.googleapis.com/v1/projects/" + API_KEY + "/databases/(default)/documents/comments"
-      axios.post(url,
+      // const API_KEY = process.env.VUE_APP_FIREBASE_DB
+      axios.post(FIREBASE_DB_URL,
       {
         fields: {
           name: {
@@ -40,10 +51,6 @@ export default {
             stringValue: this.comment
           }
         }
-      }).then(response => {
-        console.log(response);
-      }).catch(error => {
-        console.log(error);
       });
       this.name = '';
       this.comment = '';
