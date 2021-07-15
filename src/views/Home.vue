@@ -19,9 +19,6 @@
 <script>
 import axios from 'axios';
 
-const FIREBASE_DB_URL = "https://firestore.googleapis.com/v1/projects/" +
-        process.env.VUE_APP_FIREBASE_DB + "/databases/(default)/documents/comments"
-
 export default {
   data() {
     return {
@@ -31,7 +28,7 @@ export default {
     }
   },
   created: function () {
-    axios.get(FIREBASE_DB_URL).then(response => {
+    axios.get("/comments").then(response => {
       this.posts = response.data.documents;
     });
   },
@@ -41,7 +38,7 @@ export default {
     },
     createComment() {
       // const API_KEY = process.env.VUE_APP_FIREBASE_DB
-      axios.post(FIREBASE_DB_URL,
+      axios.post("/comments",
       {
         fields: {
           name: {
