@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button @click="toUsers">Usersのページに行く</button>
     <h1>Home</h1>
     <h3>投稿</h3>
     <label for="name">名前</label>
@@ -20,6 +19,7 @@
 import axios from 'axios';
 
 export default {
+  name: 'home',
   data() {
     return {
       name: "",

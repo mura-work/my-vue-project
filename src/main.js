@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios' //追記
 import VueAxios from 'vue-axios' //追記
+import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
@@ -13,5 +14,6 @@ process.env.VUE_APP_FIREBASE_DB + "/databases/(default)/documents"
 
 new Vue({
   router,
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')
