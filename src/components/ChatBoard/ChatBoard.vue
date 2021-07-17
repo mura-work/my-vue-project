@@ -1,5 +1,6 @@
 <template>
   <v-list three-line>
+    <chat-form></chat-form>
     <template v-for="comment in comments">
       <v-list-item
           :key="comment.name"
@@ -23,9 +24,13 @@
 
 <script>
 import axios from 'axios';
+import ChatForm from '../ChatForm/ChatForm.vue'
 
 export default {
   name: 'chat-board',
+  components: {
+    ChatForm
+  },
   data: () => ({
     comments: [],
   }),
