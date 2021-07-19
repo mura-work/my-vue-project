@@ -10,6 +10,12 @@
       <li>
         <router-link to="/chats">Chat</router-link>
       </li>
+      <li>
+        <router-link to="/login">Login</router-link>
+      </li>
+      <li>
+        <router-link to="/register">Register</router-link>
+      </li>
     </ul>
   </header>
 </template>
