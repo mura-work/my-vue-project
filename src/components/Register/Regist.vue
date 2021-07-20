@@ -5,7 +5,7 @@
     <input type="text" id="email" v-model="email" /><br>
 
     <label>パスワード</label>
-    <textarea id="password" v-model="password"></textarea><br>
+    <input type="password" id="password" v-model="password" /><br>
 
     <button @click="register">登録</button>
   </div>
@@ -21,7 +21,12 @@ export default {
   },
   methods: {
     register: function() {
-
+      this.$store.dispatch('register', {
+        email: this.email,
+        password: this.password,
+      })
+      this.email = ''
+      this.password = ''
     }
   }
 }
