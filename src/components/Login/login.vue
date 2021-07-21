@@ -5,7 +5,7 @@
     <input type="text" id="email" v-model="email" /><br>
 
     <label>パスワード</label>
-    <textarea id="password" v-model="password"></textarea><br>
+    <input type="password" id="password" v-model="password" /><br>
 
     <button @click="login">送信</button>
   </div>
