@@ -27,8 +27,13 @@ export default {
       posts: [],
     }
   },
+  computed: {
+    idToken() {
+      return this.$store.getters.idToken;
+    },
+  },
   created: function () {
-    axios.get("/comments").then(response => {
+    axios.get("/comments", ).then(response => {
       this.posts = response.data.documents;
     });
   },
@@ -48,7 +53,12 @@ export default {
             stringValue: this.comment
           }
         }
-      });
+      },
+      {
+      headers: {
+        Authentication: `Bearer ${this.idToken}`
+      }
+    });
       this.name = '';
       this.comment = '';
     }
