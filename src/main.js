@@ -13,11 +13,13 @@ axios.defaults.baseURL =
 "https://firestore.googleapis.com/v1/projects/" +
 process.env.VUE_APP_FIREBASE_DB + "/databases/(default)/documents"
 
-store.dispatch('autoLogin');
+store.dispatch('autoLogin').then(() => {
+  new Vue({
+    router,
+    vuetify,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+});
 
-new Vue({
-  router,
-  vuetify,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+

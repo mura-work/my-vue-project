@@ -11,6 +11,9 @@
         <li>
           <router-link to="/chats">Chat</router-link>
         </li>
+        <li>
+          <span @click="logout" style="cursor: pointer;">ログアウト</span>
+        </li>
       </template>
 
       <template v-if="!isAuthentication">
@@ -31,6 +34,11 @@ export default {
   computed: {
     isAuthentication: function() {
       return this.$store.getters.idToken !== null;
+    }
+  },
+  methods: {
+    logout: function() {
+      this.$store.dispatch('logout')
     }
   }
 }
