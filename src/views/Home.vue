@@ -33,7 +33,11 @@ export default {
     },
   },
   created: function () {
-    axios.get("/comments", ).then(response => {
+    axios.get("/comments", {
+      headers: {
+        Authorization: `Bearer ${this.idToken}`
+      }
+      }).then(response => {
       this.posts = response.data.documents;
     });
   },
@@ -56,7 +60,7 @@ export default {
       },
       {
       headers: {
-        Authentication: `Bearer ${this.idToken}`
+        Authorization: `Bearer ${this.idToken}`
       }
     });
       this.name = '';
